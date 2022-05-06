@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+@using TKWeb.Models;
+@using System.Data;
+@using System.Data.SqlClient;
+@using System.Configuration;
+@{
+    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["strconnect"].ConnectionString);
+    SqlDataAdapter da = new SqlDataAdapter("select * from LoaiSP", con);
+    DataTable dt = new DataTable();
+    da.Fill(dt);
+}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="~/Content/images/logoo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/jquery.bxslider/jquery.bxslider.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/owl.carousel/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/fancyBox/source/jquery.fancybox.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/green.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style_frm_dkdn.css" />
+    <link rel="stylesheet" href="~/Content/css/switcher.css">
+    <title>Oriole Shop</title>
+</head>
+<body class="green">
+    <div id="header" class="header">
+
+        <!-- MAIN HEADER -->
+        <div class="container main-header">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 logo">
+                    <a href="index.html"><img alt="Oriole Shop" src="~/Content/images/logo1.png" /></a>
+                </div>
+                <div class="col-xs-4 col-sm-12 col-md-5 col-lg-4 header-search-box">
+                    <form class="form-inline">
+                        <div class="form-group input-serach">
+                            <input type="text" placeholder="Tìm kiếm ...">
+                        </div>
+                        <button type="submit" class="pull-right btn-search"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 group-button-header">
+                    <a title="Compare" href="#" class="btn-compare">So sánh</a>
+                    <a title="My wishlist" href="#" class="btn-heart">Yêu thích</a>
+
+                    <div class="btn-cart" id="cart-block">
+                        <a title="SignIn" href="" data-toggle="modal" data-target="#myModal">Đăng nhập</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MANIN HEADER -->
+        <div id="nav-top-menu" class="nav-top-menu">
+            <div class="container">
+                <div class="row">
+
+                    <div id="main-menu" class="col-sm-12 main-menu">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                    <a class="navbar-brand" href="#">MENU</a>
+                                </div>
+                                <div id="navbar" class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a href="/SanPham/Index"><span class="fa fa-home"></span> Trang chủ</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle"
+                                               data-toggle="dropdown">Loại sản phẩm</a>
+                                            <ul class="dropdown-menu container-fluid">
+                                                <li class="block-container">
+                                                    <ul class="block">
+                                                        @foreach (DataRow dr in dt.Rows)
+                                                        {
+                                                            <li class="link_container"><a href="/SanPham/ProCategory/@dr[0].ToString()">@dr[1].ToString()</a></li>
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <!--<li><a href="#">Promotion</a></li>-->
+                                        <li><a href="news.html">Tin tức</a></li>
+                                        <li><a href="policy-faq.html">Tìm hiểu shop</a></li>
+                                        <li><a href="contact-us.html">Liên hệ</a></li>
+                                    </ul>
+                                </div><!--/.nav-collapse -->
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <!-- userinfo on top-->
+                <div id="form-search-opntop">
+                </div>
+                <!-- userinfo on top-->
+                <div id="user-info-opntop">
+                </div>
+                <!-- CART ICON ON MMENU -->
+                <div id="shopping-cart-box-ontop">
+                    <i class="fa fa-user" data-toggle="modal" data-target="#myModal"></i>
+
+                    <div class="shopping-cart-box-ontop-content"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <h2 class="page-heading">
+                        <span class="page-heading-title">LIÊN HỆ</span>
+                    </h2>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.7640950474224!2d108.24714761485801!3d16.025791288907744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142175023acc5bf%3A0x1f6e10701e5bcca0!2zOTkgTMOqIFbEg24gSGnhur9uLCBLaHXDqiBN4bu5LCBOZ8WpIEjDoG5oIFPGoW4sIMSQw6AgTuG6tW5nLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1469949400561" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                    <div class="col-md-9 col-sm-9">
+                        <h2>Phiếu liên hệ</h2>
+                        <p>Vui lòng điền vào biểu mẫu bên dưới!</p>
+
+                        <!-- BEGIN FORM-->
+                        <form action="#" role="form">
+                            <div class="form-group">
+                                <label for="contacts-name">Họ tên</label>
+                                <input type="text" class="input form-control" id="contacts-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="contacts-email">Email</label>
+                                <input type="email" class="input form-control" id="contacts-email">
+                            </div>
+                            <div class="form-group">
+                                <label for="contacts-message">Lời nhắn</label>
+                                <textarea class="input form-control" rows="5" id="contacts-message"></textarea>
+                            </div>
+                            <button class="button" type="submit">Send Message  <i class=" fa fa-send"></i></button>
+                            <button type="button" id="btn-remove-all-item" class="button-cancel margin-right-20">Cancel</button>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 sidebar2">
+                        <h2>Liên hệ với chúng tôi</h2>
+                        <address>
+                            <strong>Địa chỉ:</strong><br>
+                            357 Bạch Mai, Hai Bà Trưng, Hà Nội, Việt Nam.<br>
+                        </address>
+                        <address>
+                            <strong>Điện thoại:</strong><br>
+                            (+84) 978226868<br>
+                        </address>
+                        <address>
+                            <strong>Email</strong><br>
+                            <a href="mailto:info@email.com">hoanganh04092001@gmail.com</a><br>
+                        </address>
+                        <ul class="social-icons margin-bottom-40">
+                            <li><a href="#" data-original-title="facebook" class="facebook"></a></li>
+                            <li><a href="#" data-original-title="github" class="github"></a></li>
+                            <li><a href="#" data-original-title="Goole Plus" class="googleplus"></a></li>
+                            <li><a href="#" data-original-title="linkedin" class="linkedin"></a></li>
+                            <li><a href="#" data-original-title="rss" class="rss"></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <div class="container">
+            <!-- introduce-box -->
+            <div id="introduce-box" class="row">
+                <div class="col-md-3">
+                    <div id="address-box">
+                        <a href="#"><img src="~/Content/images/logoo.png" alt="logo" /></a>
+
+                        <div id="address-list">
+                            <div class="tit-name">Địa chỉ:</div>
+                            <div class="tit-contain">357 Bạch Mai, Hai Bà Trưng, Hà Nội, Việt Nam.</div>
+                            <div class="tit-name">Điện thoại:</div>
+                            <div class="tit-contain">(+84) 978226868</div>
+                            <div class="tit-name">Email:</div>
+                            <div class="tit-contain">hoanganh04092001@gmail.com</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="introduce-title">KHÁCH HÀNG QUAN TÂM</div>
+                            <ul id="introduce-support" class="introduce-list">
+                                <li> T2 - T6: 7:00 đến 20:00 </li>
+                                <li>T7 & CN: 7:00 đến 18:00 </li>
+                                <li><a href="policy-faq.html">Làm cách nào để mua</a></li>
+                                <li><a href="policy-faq.html">Làm cách nào để thanh toán</a></li>
+                                <li><a href="policy-faq.html">FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="introduce-title">Chính sách</div>
+                            <ul id="introduce-Account" class="introduce-list">
+                                <li><a href="policy-faq.html">Bảo mật thông tin</a></li>
+                                <li><a href="policy-faq.html">Thanh toán</a></li>
+                                <li><a href="policy-faq.html">Đổi hàng và trả hàng</a></li>
+                                <li><a href="policy-faq.html">Điều kiện</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div id="contact-box">
+                        <div class="introduce-title">Đăng ký để nhận tin mới nhất từ Oriole Shop</div>
+                        <div class="input-group" id="mail-box">
+                            <input type="text" placeholder="Email của bạn là: " />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">OK</button>
+                            </span>
+                        </div><!-- /input-group -->
+                        <div class="introduce-title">Theo dõi chúng tôi</div>
+                        <!--<div class="social-link">-->
+                        <!--<a href="#"><i class="fa fa-facebook"></i></a>-->
+                        <!--<a href="#"><i class="fa fa-pinterest-p"></i></a>-->
+                        <!--<a href="#"><i class="fa fa-google-plus"></i></a>-->
+                        <!--<a href="#"><i class="fa fa-youtube"></i></a>-->
+                        <!--</div>-->
+                        <div class="social-link">
+                            <ul class="social-icons">
+                                <li><a class="rss" data-original-title="rss" href="#"></a></li>
+                                <li><a class="facebook" data-original-title="facebook" href="#"></a></li>
+                                <li><a class="twitter" data-original-title="twitter" href="#"></a></li>
+                                <li><a class="googleplus" data-original-title="googleplus" href="#"></a></li>
+                                <li><a class="linkedin" data-original-title="linkedin" href="#"></a></li>
+                                <li><a class="youtube" data-original-title="youtube" href="#"></a></li>
+                                <li><a class="vimeo" data-original-title="vimeo" href="#"></a></li>
+                                <li><a class="skype" data-original-title="skype" href="#"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /#introduce-box -->
+
+
+            <div id="footer-menu-box">
+                <p class="text-center">Copyrights &#169; 2016 Oriole Shop. All Rights Reserved.</p>
+            </div><!-- /#footer-menu-box -->
+        </div>
+    </footer>
+    <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+    <!-- Script-->
+
+    <script type="text/javascript" src="~/Scripts/lib/jquery/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/fancyBox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/owl.carousel/owl.carousel.min.js"></script>
+
+
+
+    <script type="text/javascript" src="~/Scripts/js/jquery.actual.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/theme-script.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/js/shoppingCart.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/controller/Cartitem.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/js/layout.js"></script>
+    <script type="text/javascript">
+        //jQuery(document).ready(function() {
+        //    Layout.init();
+        //    Layout.initOWL();
+        //    Layout.initTwitter();
+        //    Layout.initImageZoom();
+        //    Layout.initTouchspin();
+        //    Layout.initUniform();
+        //    Layout.initSliderRange();
+        //});
+        jQuery('#demo_changer .demo-icon').click(function () {
+
+            if (jQuery('.demo_changer').hasClass("active")) {
+                jQuery('.demo_changer').animate({
+                    "right": "-300px"
+                }, function () {
+                    jQuery('.demo_changer').toggleClass("active");
+                });
+            } else {
+                jQuery('.demo_changer').animate({
+                    "right": "0px"
+                }, function () {
+                    jQuery('.demo_changer').toggleClass("active");
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
+

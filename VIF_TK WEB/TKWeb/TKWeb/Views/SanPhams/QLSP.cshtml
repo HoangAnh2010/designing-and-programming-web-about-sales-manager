@@ -1,0 +1,99 @@
+﻿
+@model IEnumerable<TKWeb.Models.SanPham>
+
+@{
+    ViewBag.Title = "QLSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table style="color:white; text-align:center; background-color: orangered" width="100" height="40">
+    <tr>
+        <td>
+            <strong>
+                <br />
+                <p>
+                    @Html.ActionLink("Thêm mới", "Create", "SanPhams")
+                </p>
+            </strong>
+        </td>
+    </tr>
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.TenSP)</b>
+        </th>
+        <th style="text-align:center">
+            <b>@Html.DisplayNameFor(model => model.MoTa)</b>
+        </th>
+        <th style="text-align:center">
+            <b>@Html.DisplayNameFor(model => model.SoLuong)</b>
+        </th>
+        <th style="text-align:center">
+            <b> @Html.DisplayNameFor(model => model.DonGia)</b>
+        </th>
+        <th style="text-align:center">
+            <b>@Html.DisplayNameFor(model => model.MaLoai)</b>
+        </th>
+        <th style="text-align:center">
+            <b>@Html.DisplayNameFor(model => model.Anh)</b>
+        </th>
+        <th style="text-align:center">
+            <b>Thao tác</b>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSP)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.MoTa)*@
+                @{
+                    //tach phan mo ta ra thanh cac phan nho hon
+                    string[] a = item.MoTa.ToString().Split(new string[] { " " }, StringSplitOptions.None);
+                    //khai bao bien tam de luu tru cac phan tu duoc tach
+                    string tam = "";
+                    if (a.Length < 20)
+                    {
+                        tam = item.MoTa;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 20; i++)
+                        {
+                            tam = tam + a[i] + " ";
+                        }
+                        tam = tam + "...";
+                    }
+                }
+                <div title="@item.MoTa">
+                    @tam
+                </div>
+            </td>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.DonGia)*@
+                @string.Format("{0:#,##0}", item.DonGia)
+            </td>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.MaLoai)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Anh)*@
+                <img src="~/Content/images/product-detail/@item.Anh" alt="Alternate Text" height="100" width="100" />
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaSP }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaSP })
+            </td>
+        </tr>
+    }
+
+</table>
+

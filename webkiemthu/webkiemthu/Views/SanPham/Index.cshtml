@@ -1,0 +1,72 @@
+﻿@model IEnumerable<webkiemthu.Models.SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+        <!-- featured category  -->
+        <div class="category-featured Vegetables">
+            <nav class="navbar nav-menu show-brand">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-brand"><a href="#"> <img alt="fashion" src="~/Content/images/icon_like.png" /> Bán chạy nhất</a></div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse">
+
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+
+            </nav>
+            <div class="product-featured clearfix">
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="box-right">
+                            <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                            <ul class="product-list">
+                                @foreach (var item in Model)
+                                {
+                                    <li class="col-sm-4 product-item">
+                                        <div class="left-block">
+                                            <a href="/SanPham/ProDetail/@item.MaSP">
+                                                <img class="img-responsive" alt="product"
+                                                     src="~/Content/images/product-detail/@item.Anh" />
+                                            </a>
+
+                                            <div class="quick-view">
+                                                <a title="Add to my wishlist" class="heart" href="#"></a>
+                                                <a title="Add to compare" class="compare" href="#"></a>
+                                                <a title="Quick view" href="images/product-detail/vegetables/spinach_600x600.jpg" class="search fancybox-button"></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a class="add-item-to-cart" title="Add to Cart" href="#" data-name="Spinach - 1kg"
+                                                   data-price="55000" data-image="vegetables/spinach_300x300.jpg" data-product-code="SP109" onclick="muahang('@item.MaSP')">Thêm vào giỏ hàng</a>
+                                            </div>
+                                            <div class="bestseller"></div>
+                                        </div>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="/SanPham/ProDetail/@item.MaSP">@item.TenSP - 1kg</a></h5>
+
+                                            <div class="content_price">
+                                                <span class="price product-price"><span style="color: black">Đơn giá:</span> @string.Format("{0:#,##0}",item.DonGia)</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end featured category -->
+
+
+        
+        <!-- end featured category -->
+
+

@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    
+<div class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <h2 class="page-heading">
+                    <span class="page-heading-title">LIÊN HỆ</span>
+                </h2>
+
+                <div class="col-md-9 col-sm-9">
+                    <h2>Phiếu liên hệ</h2>
+                    <p>Vui lòng điền vào biểu mẫu bên dưới!</p>
+
+                    <!-- BEGIN FORM-->
+                    <form action="#" role="form">
+                        <div class="form-group">
+                            <label for="contacts-name">Họ tên</label>
+                            <input type="text" class="input form-control" id="contacts-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacts-email">Email</label>
+                            <input type="email" class="input form-control" id="contacts-email">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacts-message">Lời nhắn</label>
+                            <textarea class="input form-control" rows="5" id="contacts-message"></textarea>
+                        </div>
+                        <button class="button" type="submit">Gửi  <i class=" fa fa-send"></i></button>
+                        <button type="button" id="btn-remove-all-item" class="button-cancel margin-right-20">Hủy</button>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+
+                <div class="col-md-3 col-sm-3 sidebar2">
+                    <h2>Liên hệ với chúng tôi</h2>
+                    <address>
+                        <strong>Địa chỉ:</strong><br>
+                        357 Bạch Mai, Hai Bà Trưng, Hà Nội, Việt Nam.<br>
+                    </address>
+                    <address>
+                        <strong>Điện thoại:</strong><br>
+                        (+84) 978226868<br>
+                    </address>
+                    <address>
+                        <strong>Email</strong><br>
+                        <a href="mailto:info@email.com">hoanganh04092001@gmail.com</a><br>
+                    </address>
+                    <ul class="social-icons margin-bottom-40">
+                        <li><a href="#" data-original-title="facebook" class="facebook"></a></li>
+                        <li><a href="#" data-original-title="github" class="github"></a></li>
+                        <li><a href="#" data-original-title="Goole Plus" class="googleplus"></a></li>
+                        <li><a href="#" data-original-title="linkedin" class="linkedin"></a></li>
+                        <li><a href="#" data-original-title="rss" class="rss"></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

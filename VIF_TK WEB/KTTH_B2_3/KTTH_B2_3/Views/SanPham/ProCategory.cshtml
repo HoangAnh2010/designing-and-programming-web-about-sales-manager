@@ -1,0 +1,140 @@
+﻿@model IEnumerable<KTTH_B2_3.Models.SanPham>
+@using KTTH_B2_3.Models;
+@{
+    ViewBag.Title = "ProCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="columns-container">
+        <div class="container" id="columns">
+            <!-- row -->
+            <div class="row">
+                <!-- Left colunm -->
+                <div class="column col-xs-12 col-sm-3" id="left_column">
+                    <!-- block category -->
+                    <div class="block left-module">
+                        <p class="title_block"><span class="fa fa-pagelines"></span> Sản phẩm</p>
+
+                        <div class="block_content">
+                            <!-- layered -->
+                            <div class="layered layered-category">
+                                <div class="layered-content">
+                                    <ul class="tree-menu" style="color: black">
+                                        @{
+                                            List<LoaiSP> ds = ViewBag.loaisp as List<LoaiSP>;
+                                            if (ds != null)
+                                            {
+                                                foreach (var item in ds)
+                                                {
+                                                    <li><span></span><a href="/SanPham/ProCategory/@item.MaLoai">@item.TenLoai</a></li>
+
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- ./layered -->
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ./left colunm -->
+                <!-- Center colunm-->
+                <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                    <!-- page heading-->
+                    <h2 class="page-heading">
+                        <span class="page-heading-title">@ViewBag.tenloai</span>
+                    </h2>
+                    <!-- ../page heading-->
+                    <!-- Product -->
+                    <div id="product">
+                        <!-- box product -->
+                        <div class="category-featured Vegetables">
+                            <div class="product-featured clearfix">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="box-right">
+                                            <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                                            <ul class="product-list">
+                                                @foreach (var i in Model)
+                                                {
+                                                    <li class="col-sm-4 product-item">
+                                                        <div class="left-block">
+                                                            <a href="/SanPham/ProDetail/@i.MaSP">
+                                                                <img class="img-responsive" alt="product"
+                                                                     src="~/Content/images/product-detail/@i.Anh" />
+                                                            </a>
+
+                                                            <div class="quick-view">
+                                                                <a title="Yêu thích" class="heart" href="#"></a>
+                                                                <a title="So sánh" class="compare" href="#"></a>
+                                                                <a title="Xem chi tiết" href="images/product-detail/vegetables/spinach_600x600.jpg" class="search fancybox-button"></a>
+                                                            </div>
+                                                            <div class="add-to-cart">
+                                                                <a class="add-item-to-cart" title="Add to Cart" href="javascript:void(0)" data-name="Spinach - 1kg"
+                                                                   data-price="55000" data-image="vegetables/spinach_300x300.jpg" data-product-code="SP109" onclick="muahang('@i.MaSP')">Thêm vào giỏ hàng</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right-block">
+                                                            <h5 class="product-name"><a href="/SanPham/ProDetail/@i.MaSP">@i.TenSP</a></h5>
+
+                                                            <div class="content_price">
+                                                                <span class="price product-price"><span style="color: black">Đơn giá: </span>@string.Format("{0:#,##0}", i.DonGia) VND</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./box product -->
+                    </div>
+                    <!-- Product -->
+                    <div class="sortPagiBar">
+                        <div class="bottom-pagination">
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">Next &raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="show-product-item">
+                            <select name="">
+                                <option value="">Hiển thị 5</option>
+                                <option value="">Hiển thị 10</option>
+                                <option value="">Hiển thị 20</option>
+                                <option value="">Hiển thị 50</option>
+                            </select>
+                        </div>
+                        <div class="sort-product">
+                            <select>
+                                <option value="">Tên sản phẩm</option>
+                                <option value="">Giá</option>
+                            </select>
+
+                            <div class="sort-product-icon">
+                                <i class="fa fa-sort-alpha-asc"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./ Center colunm -->
+            </div>
+            <!-- ./row-->
+        </div>
+    </div>

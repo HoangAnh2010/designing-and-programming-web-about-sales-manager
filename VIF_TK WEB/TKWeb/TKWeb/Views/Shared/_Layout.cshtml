@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+@using TKWeb.Models;
+@using System.Data;
+@using System.Data.SqlClient;
+@using System.Configuration;
+@{
+    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["strconnect"].ConnectionString);
+    SqlDataAdapter da = new SqlDataAdapter("select * from LoaiSP", con);
+    DataTable dt = new DataTable();
+    da.Fill(dt);
+}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="~/Content/images/logoo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/jquery.bxslider/jquery.bxslider.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/owl.carousel/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/lib/fancyBox/source/jquery.fancybox.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/green.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style_frm_dkdn.css" />
+    <link rel="stylesheet" href="~/Content/css/switcher.css">
+    <title>Oriole Shop</title>
+</head>
+<body class="green">
+    <!-- HEADER -->
+    <div id="header" class="header">
+
+        <!-- MAIN HEADER -->
+        <div class="container main-header">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 logo">
+                    <a href="index.html"><img alt="Oriole Shop" src="~/Content/images/logo1.png" height="90" width="500" /></a>
+                </div>
+                <div class="col-xs-4 col-sm-12 col-md-5 col-lg-4 header-search-box">
+                    <form class="form-inline">
+                        <div class="form-group input-serach">
+                            <input type="text" placeholder="Tìm kiếm ...">
+                        </div>
+                        <button type="submit" class="pull-right btn-search"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 group-button-header">
+                    <a title="So sánh" href="#" class="btn-compare">So sánh</a>
+                    <a title="My wishlist" href="#" class="btn-heart">Yêu thích</a>
+
+                    <div class="btn-cart" id="cart-block">
+                        <a title="SignIn" href="" data-toggle="modal" data-target="#myModal">Đăng nhập</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MANIN HEADER -->
+        <div id="nav-top-menu" class="nav-top-menu">
+            <div class="container">
+                <div class="row">
+
+                    <div id="main-menu" class="col-sm-12 main-menu">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                    <a class="navbar-brand" href="#">MENU</a>
+                                </div>
+                                <div id="navbar" class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a class="li-item" href="/SanPham/Index"><span class="fa fa-home"></span> TRANG CHỦ</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle"
+                                               data-toggle="dropdown">DANH MỤC SẢN PHẨM</a>
+                                            <ul class="dropdown-menu container-fluid">
+                                                <li class="block-container">
+                                                    <ul class="block">
+                                                        @foreach (DataRow dr in dt.Rows)
+                                                        {
+                                                            <li class="link_container"><a href="/SanPham/ProCategory/@dr[0].ToString()">@dr[1].ToString()</a></li>
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <!--<li><a href="#">Promotion</a></li>-->
+                                        <li ><a class="li-item" data-index="0" href="news.html">TIN TỨC</a></li>
+                                        <li ><a class="li-item" data-index="1" href="policy-faq.html">CÂU HỎI THƯỜNG GẶP</a></li>
+                                        <li ><a class="li-item" data-index="2" href="/Contactus/Contact">LIÊN HỆ</a></li>
+                                        <li ><a class="li-item" data-index="3" href="/SanPhams/QLSP">QUẢN LÝ SẢN PHẨM</a></li>
+                                    </ul>
+                                </div><!--/.nav-collapse -->
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <!-- userinfo on top-->
+                <div id="form-search-opntop">
+                </div>
+                <!-- userinfo on top-->
+                <div id="user-info-opntop">
+                </div>
+                <!-- CART ICON ON MMENU -->
+                <div id="shopping-cart-box-ontop">
+                    <i class="fa fa-user" data-toggle="modal" data-target="#myModal"></i>
+
+                    <div class="shopping-cart-box-ontop-content"></div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    <!-- end header -->
+    <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+    
+    <!---->
+    <div class="content-page">
+        <div class="container">
+            @RenderBody()
+
+        </div>
+    </div>
+    <div id="owl-demo-ppsay">
+        <div class="container">
+            <div class="ppsay-title">PHẢN HỒI CỦA KHÁCH HÀNG</div>
+            <div id="customer-item-carousel" class="carousel slide hidden-sm hidden-xs" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#customer-item-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#customer-item-carousel" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner hidden-sm hidden-xs">
+                    <div class="item active">
+                        <div class="ppsaydiv">
+                            <div class="ppsaycontent hidden-xs col-sm-6 col-md-6">
+                                <div class="ppsayavt col-md-3 col-sm-3">
+                                    <img src="~/Content/images/parallax1.jpg" alt="Thu Hà">
+                                </div>
+                                <div class="ppsayauthor col-md-9 col-sm-9">
+                                    <div class="ppsaycontentcmt">
+                                        <p style="text-align: justify"><span>“ </span>Tôi hài lòng về chất lượng sản phẩm và chất lượng dịch vụ của Shop. Tôi hy vọng rằng có thêm nhiều sản phẩm mới tốt nhất và dịch vụ của bạn luôn bền vững.<span>”</span></p>
+                                    </div>
+                                    <p><span>Khách hàng: </span> <span class="name">Thu Hà</span></p>
+                                </div>
+                            </div>
+                            <div class="ppsaycontent col-xs-12 col-sm-6 col-md-6">
+                                <div class="ppsayavt col-md-3 col-sm-3">
+                                    <img src="~/Content/images/parallax2.jpg" alt="Minh Huệ">
+                                </div>
+                                <div class="ppsayauthor col-md-9 col-sm-9">
+                                    <div class="ppsaycontentcmt">
+                                        <p style="text-align: justify"><span>“ </span>Shop phục vụ rất chu đáo và nhiệt tình. Chất lượng sản phẩm tốt, sau một thời gian ngắn sử dụng mà tôi đã có được làn da như các diễn viên Hàn Quốc.<span>”</span></p>
+                                    </div>
+                                    <p><span>Khách hàng: </span> <span class="name">Minh Huệ</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ppsaydiv">
+                            <div class="ppsaycontent col-xs-12 col-sm-6 col-md-6">
+                                <div class="ppsayavt col-md-3 col-sm-3">
+                                    <img src="~/Content/images/parallax3.jpg" alt="Thanh Huyền">
+                                </div>
+                                <div class="ppsayauthor col-md-9 col-sm-9">
+                                    <div class="ppsaycontentcmt">
+                                        <p style="text-align: justify"><span>“ </span>Chất lượng sản phẩm ngoài mong đợi của tôi. Shop bán các sản phẩm vô cùng chất lượng và giá cả hợp lý. Rất đáng mua.<span>”</span></p>
+                                    </div>
+                                    <p><span>Khách hàng: </span> <span class="name">Thanh Huyền</span></p>
+                                </div>
+                            </div>
+                            <div class="ppsaycontent col-xs-12 col-sm-6 col-md-6">
+                                <div class="ppsayavt col-md-3 col-sm-3">
+                                    <img src="~/Content/images/parallax4.jpg" alt="Hoàng Anh">
+                                </div>
+                                <div class="ppsayauthor col-md-9 col-sm-9">
+                                    <div class="ppsaycontentcmt">
+                                        <p><span style="text-align: justify">“ </span>Shop bán mỹ phẩm quá chất lượng. Tôi dùng trong thời gian ngắn mà đã thấy hiệu quả rõ rệt.<span>”</span></p>
+                                    </div>
+                                    <p><span>Khách hàng: </span> <span class="name">Hoàng Anh</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="customer-item-carousel" class="carousel slide hidden-md hidden-lg" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#customer-item-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#customer-item-carousel" data-slide-to="1"></li>
+                    <li data-target="#customer-item-carousel" data-slide-to="2"></li>
+                    <li data-target="#customer-item-carousel" data-slide-to="3"></li>
+                    <li data-target="#customer-item-carousel" data-slide-to="4"></li>
+                    <li data-target="#customer-item-carousel" data-slide-to="5"></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <!-- introduce-box -->
+            <div id="introduce-box" class="row">
+                <div class="col-md-3">
+                    <div id="address-box">
+                        <a href="#"><img src="~/Content/images/logoo.png" alt="logo" /></a>
+
+                        <div id="address-list">
+                            <div class="tit-name">Địa chỉ:</div>
+                            <div class="tit-contain">357 Bạch Mai, Hai Bà Trưng, Hà Nội, Việt Nam.</div>
+                            <div class="tit-name">Điện thoại:</div>
+                            <div class="tit-contain">(+84) 978226868</div>
+                            <div class="tit-name">Email:</div>
+                            <div class="tit-contain">hoanganh04092001@gmail.com</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="introduce-title">KHÁCH HÀNG QUAN TÂM</div>
+                            <ul id="introduce-support" class="introduce-list">
+                                <li> T2 - T6: 7:00 đến 20:00 </li>
+                                <li>T7 & CN: 7:00 đến 18:00 </li>
+                                <li><a href="policy-faq.html">Làm cách nào để mua</a></li>
+                                <li><a href="policy-faq.html">Làm cách nào để thanh toán</a></li>
+                                <li><a href="policy-faq.html">FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="introduce-title">Chính sách</div>
+                            <ul id="introduce-Account" class="introduce-list">
+                                <li><a href="policy-faq.html">Bảo mật thông tin</a></li>
+                                <li><a href="policy-faq.html">Thanh toán</a></li>
+                                <li><a href="policy-faq.html">Đổi hàng và trả hàng</a></li>
+                                <li><a href="policy-faq.html">Điều kiện</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div id="contact-box">
+                        <div class="introduce-title">Đăng ký để nhận tin mới nhất từ Oriole Shop</div>
+                        <div class="input-group" id="mail-box">
+                            <input type="text" placeholder="Email của bạn là: " />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">OK</button>
+                            </span>
+                        </div><!-- /input-group -->
+                        <div class="introduce-title">Theo dõi chúng tôi</div>
+                        <div class="social-link">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <a href="#"><i class="fa fa-youtube"></i></a>
+                        </div>
+                        <div class="social-link">
+                            <ul class="social-icons">
+                                <li><a class="rss" data-original-title="rss" href="#"></a></li>
+                                <li><a class="facebook" data-original-title="facebook" href="#"></a></li>
+                                <li><a class="twitter" data-original-title="twitter" href="#"></a></li>
+                                <li><a class="googleplus" data-original-title="googleplus" href="#"></a></li>
+                                <li><a class="linkedin" data-original-title="linkedin" href="#"></a></li>
+                                <li><a class="youtube" data-original-title="youtube" href="#"></a></li>
+                                <li><a class="vimeo" data-original-title="vimeo" href="#"></a></li>
+                                <li><a class="skype" data-original-title="skype" href="#"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /#introduce-box -->
+
+
+            <div id="footer-menu-box">
+                <p class="text-center">Copyrights &#169; 2016 Oriole Shop. All Rights Reserved.</p>
+            </div><!-- /#footer-menu-box -->
+        </div>
+    </footer>
+
+    <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+    <!-- Script-->
+
+    <script type="text/javascript" src="~/Scripts/lib/jquery/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/fancyBox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/owl.carousel/owl.carousel.min.js"></script>
+
+
+
+    <script type="text/javascript" src="~/Scripts/js/jquery.actual.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/theme-script.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/js/shoppingCart.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/controller/Cartitem.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/js/layout.js"></script>
+    <script type="text/javascript">
+        //jQuery(document).ready(function() {
+        //    Layout.init();
+        //    Layout.initOWL();
+        //    Layout.initTwitter();
+        //    Layout.initImageZoom();
+        //    Layout.initTouchspin();
+        //    Layout.initUniform();
+        //    Layout.initSliderRange();
+        //});
+        jQuery('#demo_changer .demo-icon').click(function () {
+
+            if (jQuery('.demo_changer').hasClass("active")) {
+                jQuery('.demo_changer').animate({
+                    "right": "-300px"
+                }, function () {
+                    jQuery('.demo_changer').toggleClass("active");
+                });
+            } else {
+                jQuery('.demo_changer').animate({
+                    "right": "0px"
+                }, function () {
+                    jQuery('.demo_changer').toggleClass("active");
+                });
+            }
+        });
+        var raw_index = sessionStorage.getItem('selected_menu')
+        var menu_index = raw_index == undefined || raw_index == null || raw_index == '' ? -1 : Number(raw_index);
+        console.log(menu_index);
+        if (menu_index >= 0) {
+            $($('.li-item')[menu_index + 1]).parent().addClass('active');
+            console.log("ok");
+        }
+        
+
+        $(document).on('click', '.li-item', (e) => {
+            e.preventDefault();
+            var a = $(e.target);
+            sessionStorage.setItem('selected_menu', a.data('index'));
+            location.href = a.attr('href');
+        });
+        
+        
+    </script>
+</body>
+
+</html>

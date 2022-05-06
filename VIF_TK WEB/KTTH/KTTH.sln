@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTTH", "KTTH\KTTH.csproj", "{BB0D8720-929F-444F-B656-D158FF6830E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB0D8720-929F-444F-B656-D158FF6830E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB0D8720-929F-444F-B656-D158FF6830E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB0D8720-929F-444F-B656-D158FF6830E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB0D8720-929F-444F-B656-D158FF6830E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CF9D98AE-45B9-4675-A95A-3222A91B13D1}
+	EndGlobalSection
+EndGlobal
